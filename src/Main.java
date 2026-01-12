@@ -1,5 +1,6 @@
 import java.util.Map;
-import app.CommandLine; 
+import app.CommandLine;
+import app.UserActivity;
 import app.Username;
 
 public class Main {
@@ -14,7 +15,17 @@ public class Main {
             String username = result.get("username");
             Username usernameVerifier = new Username();
             Boolean usernameValid = usernameVerifier.verifyUserName(username);
-            System.out.println(usernameValid);
+            
+            if (usernameValid == true) {
+                // Make api call
+                UserActivity userActivity = new UserActivity();
+                userActivity.getUserActivity(username);
+
+                // Format the result & pring the result
+                
+            } else {
+                System.out.println("The username " + username + " is invalid");
+            }
         } else {
             System.out.println(result.get("error"));
         }
